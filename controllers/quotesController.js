@@ -1,6 +1,6 @@
 const quotesDB = {
    quotes: require("../models/quotes.json"),
-   setQuotes: (quotes) => (quotesDB.quotes = quotes),
+   setQuotes: (data) => (quotesDB.quotes = data),
 };
 
 const getAllQuotes = (req, res) => {
@@ -32,8 +32,6 @@ const createQuote = (req, res) => {
    console.log(newQuote);
    res.json(newQuote);
 };
-
-
 
 // const removeQuote = (req, res) => {
 //    const id = req.body.id;

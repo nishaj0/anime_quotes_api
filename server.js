@@ -11,6 +11,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // routes
+app.use("/register", require("./router/register"));
+
 app.use("/quotes", require("./router/api/quotes"));
 
 // error handler
