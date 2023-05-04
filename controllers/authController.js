@@ -3,7 +3,6 @@ const userDB = {
    setUsers: (data) => (userDB.users = data),
 };
 
-require("dotenv").config();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const fs = require("fs");
@@ -64,7 +63,7 @@ const handleLogin = async (req, res) => {
          path.join(__dirname, "..", "models", "users.json"),
          JSON.stringify(userDB.users)
       );
-      res.json({ accessToken });
+      res.json({ accessToken,refreshToken });
    } else {
       return res.status(401).send("wrong password");
    }
