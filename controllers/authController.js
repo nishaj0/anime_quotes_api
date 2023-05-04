@@ -63,7 +63,14 @@ const handleLogin = async (req, res) => {
          path.join(__dirname, "..", "models", "users.json"),
          JSON.stringify(userDB.users)
       );
-      res.json({ accessToken,refreshToken });
+
+      res.cookie("jwt", refreshToken, {
+         httpOnly: true,
+         sameSite: true,
+         /*secure: true,*/
+         maxAge: 24 * 60 * 60 * 1000,
+      });
+      res.json({ accessToken });
    } else {
       return res.status(401).send("wrong password");
    }

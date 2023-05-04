@@ -6,7 +6,11 @@ const userDB = {
 const jwt = require("jsonwebtoken");
 
 const handleRefreshToken = (req, res) => {
-   const { refreshToken } = req.body;
+   // check data 
+   const cookies = req.cookies;
+   if (!cookies?.jwt) return res.sendStatus(401);
+
+   const refreshToken = cookies.jwt;
    if (!refreshToken) return res.sendStatus(401);
 
    const foundUser = userDB.users.find((u) => {
@@ -14,6 +18,7 @@ const handleRefreshToken = (req, res) => {
    });
    if (!foundUser) return res.status(403).send("user not found");
 
+   // verify token
    jwt.verify(
       refreshToken,
       process.env.REFRESH_TOKEN_SECRET,
@@ -37,6 +42,7 @@ const handleRefreshToken = (req, res) => {
          );
 
          res.json({ accessToken });
+         console.log("Access token generated:", accessToken);
       }
    );
 };
