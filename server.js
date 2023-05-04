@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const errorHandler = require("./middleware/errorHandler");
+const router = require("./router/auth");
 
 const PORT = process.env.PORT || 3001;
 
@@ -12,6 +13,7 @@ app.use(express.json());
 
 // routes
 app.use("/register", require("./router/register"));
+app.use("/auth", require("./router/auth"));
 
 app.use("/quotes", require("./router/api/quotes"));
 

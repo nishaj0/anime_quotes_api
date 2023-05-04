@@ -10,14 +10,18 @@ const path = require("path");
 const handleNewUser = async (req, res) => {
    const { user, pass } = req.body;
    if (!user || !pass) {
-      return res
-         .status(400)
-         .json({ message: "Username and Password are required" });
+      return res.status(400).json({
+         message: "username and password are required",
+         format: {
+            user: "",
+            pass: "",
+         },
+      });
    }
 
    // check there is any duplicate of this username
    const duplicate = userDB.users.find((u) => u.username === user);
-   if (duplicate) return res.sendStatus(400);
+   if (duplicate) return res.sendStatus(409);
 
    try {
       // encrypt password
@@ -26,6 +30,9 @@ const handleNewUser = async (req, res) => {
       const newUser = {
          username: user,
          password: hashPass,
+         roles: {
+            user:2001
+         }
       };
       userDB.setUsers([...userDB.users, newUser]);
 
