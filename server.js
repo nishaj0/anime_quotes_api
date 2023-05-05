@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const cookieParser = require("cookie-parser");
+const verifyJWT = require("./middleware/verifyJWT");
 const errorHandler = require("./middleware/errorHandler");
 const router = require("./router/auth");
 
@@ -19,6 +20,7 @@ app.use("/auth", require("./router/auth"));
 app.use("/refresh", require("./router/refresh"));
 app.use("/logout", require("./router/logout"));
 
+app.use(verifyJWT);
 app.use("/quotes", require("./router/api/quotes"));
 
 // error handler

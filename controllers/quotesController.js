@@ -6,8 +6,7 @@ const quotesDB = {
 const getAllQuotes = (req, res) => {
    const allQuotes = quotesDB.quotes;
    if (!allQuotes) return res.status(204).send("No quotes found");
-
-   console.log(allQuotes);
+   console.log(req.user);
    res.json(allQuotes);
 };
 

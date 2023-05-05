@@ -39,9 +39,7 @@ const handleLogin = async (req, res) => {
             },
          },
          process.env.ACCESS_TOKEN_SECRET,
-         {
-            expiresIn: "1h",
-         }
+         { expiresIn: "100s" }
       );
 
       const refreshToken = jwt.sign(
@@ -58,7 +56,6 @@ const handleLogin = async (req, res) => {
          return u.username !== foundUser.username;
       });
       userDB.setUsers([...otherUsers, foundUser]);
-      console.log(otherUsers);
       fs.writeFileSync(
          path.join(__dirname, "..", "models", "users.json"),
          JSON.stringify(userDB.users)
@@ -70,6 +67,7 @@ const handleLogin = async (req, res) => {
          /*secure: true,*/
          maxAge: 24 * 60 * 60 * 1000,
       });
+      console.log({ success: "access token sended" });
       res.json({ accessToken });
    } else {
       return res.status(401).send("wrong password");
