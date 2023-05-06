@@ -22,7 +22,7 @@ const handleLogin = async (req, res) => {
    }
 
    const foundUser = userDB.users.find((u) => u.username === user);
-   if (!foundUser) return res.sendStatus(401);
+   if (!foundUser) return res.status(401);
 
    // evaluate password
    const matchPassword = await bcrypt.compare(pass, foundUser.password);
