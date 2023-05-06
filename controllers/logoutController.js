@@ -6,7 +6,7 @@ const userDB = {
 const handleLogout = (req, res) => {
    // get data from req
    const cookies = req.cookie;
-   if (!cookies?.jwt) return res.sendStatus(204); //No Content
+   if (!cookies?.jwt) return res.status(204).send("No data in cookies"); //No Content
    const refreshToken = cookies.jwt;
 
    // check refresh token is in DB
@@ -34,7 +34,7 @@ const handleLogout = (req, res) => {
       sameSite: "None",
       /*secure:true,*/
    });
-   res.sendStatus(204);
+   res.status(204).json({ success: "logout" });
 };
 
 module.exports = { handleLogout };

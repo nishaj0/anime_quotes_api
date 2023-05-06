@@ -161,12 +161,7 @@
       "anime": "Attack on Titan",
       "episode": "Season 1, Episode 10"
    },
-   {
-      "quote": "The only thing we're allowed to do is believe. We can't change anything.",
-      "character": "Mikasa Ackerman",
-      "anime": "Attack on Titan",
-      "episode": "Season 1, Episode 7"
-   },
+
    {
       "quote": "I don't want to conquer anything. I just think that the guy with the most freedom in this whole ocean... is the Pirate King!",
       "character": "Monkey D. Luffy",
@@ -286,5 +281,95 @@
       "character": "Kanao Tsuyuri",
       "anime": "Demon Slayer",
       "episode": "Episode 25"
+   },
+   {
+      "quote": "In this world, wherever there is light – there are also shadows.",
+      "character": "L Lawliet",
+      "anime": "Death Note",
+      "episode": "Episode 1"
+   },
+   {
+      "quote": "The key to success is to keep growing in all areas of life - mental, emotional, spiritual, as well as physical.",
+      "character": "Koro-sensei",
+      "anime": "Assassination Classroom",
+      "episode": "Episode 3"
+   },
+   {
+      "quote": "The pain of being alone is completely out of this world, isn't it? I don't know why, but I understand your feelings so much, it actually hurts.",
+      "character": "Misato Katsuragi",
+      "anime": "Neon Genesis Evangelion",
+      "episode": "Episode 23"
+   },
+   {
+      "quote": "If you don't like the hand that fate's dealt you with, fight for a new one.",
+      "character": "Natsu Dragneel",
+      "anime": "Fairy Tail",
+      "episode": "Episode 50"
+   },
+   {
+      "quote": "It's not always possible to do what we want to do, but it's important to believe in something before you actually do it.",
+      "character": "Ichigo Kurosaki",
+      "anime": "Bleach",
+      "episode": "Episode 29"
+   }, 
+   {
+      "quote": "Being weak is nothing to be ashamed of... Staying weak is.",
+      "character": "Mokuba Kaiba",
+      "anime": "Yu-Gi-Oh!",
+      "episode": "Episode 40"
+   },
+   {
+      "quote": "Sometimes the things that matter the most are right in front of you.",
+      "character": "Asuna Yuuki",
+      "anime": "Sword Art Online",
+      "episode": "Episode 14"
+   },
+   {
+      "quote": "Fear is not evil. It tells you what your weakness is. And once you know your weakness, you can become stronger as well as kinder.",
+      "character": "Gildarts Clive",
+      "anime": "Fairy Tail",
+      "episode": "Episode 69"
+   },
+   {
+      "quote": "If you can't do something, then don't. Focus on what you can do.",
+      "character": "Shiroe",
+      "anime": "Log Horizon",
+      "episode": "Episode 11"
+   },
+   {
+      "quote": "You cannot change the past, but you can learn from it. You can grow strong, you can prevail, and you'll be a better person for it.",
+      "character": "Erza Scarlet",
+      "anime": "Fairy Tail",
+      "episode": "Episode 31"
+   },
+   {
+      "quote": "The moment you think of giving up, think of the reason why you held on for so long.",
+      "character": "Natsu Dragneel",
+      "anime": "Fairy Tail",
+      "episode": "Episode 41"
+   },
+   {
+      "quote": "It's not always possible to do what we want to do, but it's important to believe in something before you actually do it.",
+      "character": "Ichigo Kurosaki",
+      "anime": "Bleach",
+      "episode": "Episode 48"
+   },
+   {
+      "quote": "In order to overcome your weakness, you have to acknowledge it and have the courage to ask for help.",
+      "character": "Nana Osaki",
+      "anime": "Nana",
+      "episode": "Episode 35"
+   },
+   {
+      "quote": "We have to live a life of no regrets.",
+      "character": "Yuno Gasai",
+      "anime": "Future Diary",
+      "episode": "Episode 23"
+   },
+   {
+      "quote": "No matter how hard or impossible it is, never lose sight of your goal.",
+      "character": "Rin Okumura",
+      "anime": "Blue Exorcist",
+      "episode": "Episode 20"
    }
 ]

@@ -2,7 +2,8 @@ const jwt = require("jsonwebtoken");
 
 const verifyJWT = (req, res, next) => {
    const authHeader = req.headers.authorization || req.headers.Authorization;
-   if (!authHeader?.startsWith("Bearer")) return res.sendStatus(401); //Unauthorized
+   if (!authHeader?.startsWith("Bearer"))
+      return res.status(401).send("data not found in headers authorization"); //Unauthorized
    const token = authHeader.split(" ")[1];
    console.log({ token });
 

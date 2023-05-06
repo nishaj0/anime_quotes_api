@@ -8,10 +8,10 @@ const jwt = require("jsonwebtoken");
 const handleRefreshToken = (req, res) => {
    // check data 
    const cookies = req.cookies;
-   if (!cookies?.jwt) return res.sendStatus(401);
+   if (!cookies?.jwt) return res.status(401).send("No cookie");
 
    const refreshToken = cookies.jwt;
-   if (!refreshToken) return res.sendStatus(401);
+   if (!refreshToken) return res.status(401).send("No refresh token in cookie");
 
    const foundUser = userDB.users.find((u) => {
       return u.refreshToken === refreshToken;
