@@ -3,9 +3,14 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const cookieParser = require("cookie-parser");
+const mongoose = require("mongoose");
 const verifyJWT = require("./middleware/verifyJWT");
 const errorHandler = require("./middleware/errorHandler");
 const router = require("./router/auth");
+const connectDB = require("./config/dbConn");
+
+// Connect to MongoDB
+connectDB();
 
 const PORT = process.env.PORT || 3001;
 
@@ -26,4 +31,7 @@ app.use("/quotes", require("./router/api/quotes"));
 // error handler
 app.use(errorHandler);
 
-app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
+mongoose.connection.once("open", () => {
+   console.log("Connected to MongoDB");
+   app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
+});

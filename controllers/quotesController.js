@@ -1,35 +1,32 @@
-const quotesDB = {
-   quotes: require("../models/quotes.json"),
-   setQuotes: (data) => (quotesDB.quotes = data),
-};
+const Quote = require("../models/Quote");
 
-const getAllQuotes = (req, res) => {
-   const allQuotes = quotesDB.quotes;
+const getAllQuotes = async (req, res) => {
+   const allQuotes = await Quote.find();
    if (!allQuotes) return res.status(204).send("No quotes found");
    console.log(req.user);
    res.json(allQuotes);
 };
 
-const createQuote = (req, res) => {
+const createQuote = async (req, res) => {
    const { quote, character, anime, episode } = req.body;
    if (!quote || !character || !anime || !episode)
       return res.status(400).send("Missing data");
 
-   const newQuote = {
-      quote,
-      character,
-      anime,
-      episode,
-   };
-   const duplicateQuote = quotesDB.quotes.find(
-      (q) => q.quote === newQuote.quote
-   );
+   try {
+      const duplicateQuote = await Quote.findOne({ quote: quote }).exec();
+      if (duplicateQuote) return res.status(400).send("Quote already exists");
+      const result = await Quote.create({
+         quote,
+         character,
+         anime,
+         episode,
+      });
 
-   if (duplicateQuote) return res.status(400).send("Quote already exists");
-   quotesDB.setQuotes([...quotesDB.quotes, newQuote]);
-
-   console.log(newQuote);
-   res.json(newQuote);
+      console.log(result);
+      res.json(result);
+   } catch (err) {
+      console.error(err);
+   }
 };
 
 // const removeQuote = (req, res) => {

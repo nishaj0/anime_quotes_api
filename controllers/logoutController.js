@@ -1,33 +1,24 @@
-const userDB = {
-   users: require("../models/users.json"),
-   setUsers: (data) => (userDB.users = data),
-};
+const User = require("../models/User");
 
-const handleLogout = (req, res) => {
+const handleLogout = async (req, res) => {
    // get data from req
    const cookies = req.cookie;
    if (!cookies?.jwt) return res.status(204).send("No data in cookies"); //No Content
    const refreshToken = cookies.jwt;
 
    // check refresh token is in DB
-   const foundUser = userDB.users((u) => {
-      return u.refreshToken === refreshToken;
-   });
+   const foundUser = await User.findOne({ refreshToken }).exec();
    if (!foundUser) {
       res.clearCookie("jwt", {
          httpOnly: true,
-         sameSite: "None",
-         /*secure:true,*/
+         sameSite: "None" /*secure:true,*/,
       });
       res.sendStatus(204);
    }
 
    // Delete refresh token in DB
-   const otherUsers = userDB.users.filter((u) => {
-      return u.refreshToken === foundUser.refreshToken;
-   });
    foundUser.refreshToken = "";
-   userDB.setUsers([...otherUsers, foundUser]);
+   const result = await foundUser.save();
 
    res.clearCookie("jwt", {
       httpOnly: true,

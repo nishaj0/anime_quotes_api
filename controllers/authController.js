@@ -1,12 +1,6 @@
-const userDB = {
-   users: require("../models/users.json"),
-   setUsers: (data) => (userDB.users = data),
-};
-
+const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const fs = require("fs");
-const path = require("path");
 
 const handleLogin = async (req, res) => {
    const { user, pass } = req.body;
@@ -21,7 +15,7 @@ const handleLogin = async (req, res) => {
       });
    }
 
-   const foundUser = userDB.users.find((u) => u.username === user);
+   const foundUser = await User.findOne({ username: user }).exec();
    if (!foundUser) return res.status(401).send("user not found");
 
    // evaluate password
@@ -50,16 +44,9 @@ const handleLogin = async (req, res) => {
 
       // save refresh token to file
       foundUser.refreshToken = refreshToken;
-
       // save to users.json
-      const otherUsers = userDB.users.filter((u) => {
-         return u.username !== foundUser.username;
-      });
-      userDB.setUsers([...otherUsers, foundUser]);
-      fs.writeFileSync(
-         path.join(__dirname, "..", "models", "users.json"),
-         JSON.stringify(userDB.users)
-      );
+      const result = await foundUser.save();
+      console.log({ result });
 
       res.cookie("jwt", refreshToken, {
          httpOnly: true,

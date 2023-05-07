@@ -1,21 +1,15 @@
-const userDB = {
-   users: require("../models/users.json"),
-   setUsers: (data) => (userDB.users = data),
-};
-
+const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 
-const handleRefreshToken = (req, res) => {
-   // check data 
+const handleRefreshToken = async (req, res) => {
+   // check data
    const cookies = req.cookies;
    if (!cookies?.jwt) return res.status(401).send("No cookie");
 
    const refreshToken = cookies.jwt;
    if (!refreshToken) return res.status(401).send("No refresh token in cookie");
 
-   const foundUser = userDB.users.find((u) => {
-      return u.refreshToken === refreshToken;
-   });
+   const foundUser = await User.findOne({ refreshToken }).exec();
    if (!foundUser) return res.status(403).send("user not found");
 
    // verify token
