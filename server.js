@@ -33,5 +33,10 @@ app.use(errorHandler);
 
 mongoose.connection.once("open", () => {
    console.log("Connected to MongoDB");
+   
+   // saving all data from quotes.json to mongoDB
+   // ? this is only needed once
+   // app.use(require("./config/saveQuotesToDB"));
+
    app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
 });
