@@ -1,7 +1,6 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
-const path = require("path");
 const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
 const verifyJWT = require("./middleware/verifyJWT");
@@ -21,8 +20,9 @@ app.use(cookieParser());
 
 // routes
 app.use("/register", require("./router/register"));
-app.use("/auth", require("./router/auth"));
+app.use("/login", require("./router/auth"));
 app.use("/refresh", require("./router/refresh"));
+app.use("/profile", require("./router/profile"));
 app.use("/logout", require("./router/logout"));
 
 app.use(verifyJWT);
@@ -33,7 +33,7 @@ app.use(errorHandler);
 
 mongoose.connection.once("open", () => {
    console.log("Connected to MongoDB");
-   
+
    // saving all data from quotes.json to mongoDB
    // ? this is only needed once
    // app.use(require("./config/saveQuotesToDB"));
