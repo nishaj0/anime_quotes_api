@@ -11,12 +11,21 @@
   - `pass` (string): Password
 - **Response:**
   - `accessToken` (string): JWT access token
-- **Description:** Authenticate user and generate an access token.
+- **Description:** Authenticate user and generate an access token, Use the access token to perform [Quotes](#quotes) operations in Bearer authentication.
+
+### Refresh Token
+
+- **URL:** `/api/refresh`
+- **Method:** `GET`
+- **Response:**
+  - `accessToken` (string): JWT access token
+- **Description:** Refresh the access token using a valid refresh token. This endpoint allows the user to obtain a new access token without the need for re-authentication.
+
 
 ### Logout
 
 - **URL:** `/api/logout`
-- **Method:** `POST`
+- **Method:** `GET`
 - **Response:**
   - Success: `204 No Content`
 - **Description:** Invalidate the current user's access token and log out.
@@ -53,6 +62,14 @@
   - `quotes` (array): Array of quote objects
 - **Description:** Retrieve all quotes from the database.
 
+### Get Quote by ID
+
+- **URL:** `/api/quotes/:id`
+- **Method:** `GET`
+- **Response:**
+  - `quote` (object): Quote object
+- **Description:** Retrieve a quote by its ID from the database.
+
 ### Add Quote
 
 - **URL:** `/api/quotes`
@@ -81,8 +98,10 @@
 
 ### Delete Quote
 
-- **URL:** `/api/quotes/:id`
+- **URL:** `/api/quotes/`
 - **Method:** `DELETE`
+- **Request Body:**
+  - `quoteId` (string): Quote ID
 - **Response:**
   - `message` (string): Success message
 - **Description:** Delete a quote from the database.
