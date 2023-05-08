@@ -2,7 +2,7 @@ const User = require("../models/User");
 
 const handleLogout = async (req, res) => {
    // get data from req
-   const cookies = req.cookie;
+   const cookies = req.cookies;
    if (!cookies?.jwt) return res.status(204).send("No data in cookies"); //No Content
    const refreshToken = cookies.jwt;
 
@@ -13,7 +13,7 @@ const handleLogout = async (req, res) => {
          httpOnly: true,
          sameSite: "None" /*secure:true,*/,
       });
-      res.sendStatus(204);
+      return res.sendStatus(204);
    }
 
    // Delete refresh token in DB
