@@ -10,6 +10,9 @@ router
    .post(
       verifyRoles(ROLES_LIST.Admin, ROLES_LIST.Editor),
       quotesController.createQuote
-   );
+   )
+   .delete(verifyRoles(ROLES_LIST.Admin), quotesController.removeQuote);
+
+router.route("/:quoteId").get(quotesController.getQuoteByID);
 
 module.exports = router;

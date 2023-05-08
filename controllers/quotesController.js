@@ -29,11 +29,31 @@ const createQuote = async (req, res) => {
    }
 };
 
-// const removeQuote = (req, res) => {
-//    const id = req.body.id;
-//    if (!id) return res.status(400).send("Missing ID");
+const removeQuote = async (req, res) => {
+   const { quoteId } = req.body;
+   if (!quoteId) return res.status(400).send("Missing data");
+   try {
+      const foundQuote = await Quote.findOne({ _id: quoteId }).exec();
+      if (!foundQuote) return res.status(400).send("Quote not found");
 
-//    const quote = quotesDB.quotes.find((q) => q._id === id);
-// };
+      const result = await Quote.deleteOne({ _id: quoteId });
+      res.json({ deleted: result });
+   } catch (err) {
+      console.error(err);
+   }
+};
 
-module.exports = { getAllQuotes, createQuote };
+const getQuoteByID = async (req, res) => {
+   const { quoteId } = req.params;
+   if (!quoteId) return res.status(400).send("Missing data");
+   try {
+      const foundQuote = await Quote.findOne({ _id: quoteId }).exec();
+      if (!foundQuote) return res.status(400).send("Quote not found");
+
+      res.json(foundQuote);
+   } catch (err) {
+      console.error(err);
+   }
+};
+
+module.exports = { getAllQuotes, createQuote, removeQuote, getQuoteByID };
