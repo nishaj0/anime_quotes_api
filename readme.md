@@ -11,7 +11,7 @@
   - `pass` (string): Password
 - **Response:**
   - `accessToken` (string): JWT access token
-- **Description:** Authenticate user and generate an access token, Use the access token to perform [Quotes](#quotes) operations in Bearer authentication.
+- **Description:** Authenticate user and generate an access token( {expiresIn: "1hour"} ), Use the access token to perform [Quotes](#quotes) operations in Bearer authentication.
 
 ### Refresh Token
 
@@ -19,7 +19,7 @@
 - **Method:** `GET`
 - **Response:**
   - `accessToken` (string): JWT access token
-- **Description:** Refresh the access token using a valid refresh token. This endpoint allows the user to obtain a new access token without the need for re-authentication.
+- **Description:** Refresh the access token using a valid refresh token( {expiresIn: "1day"} ). This endpoint allows the user to obtain a new access token without the need for re-authentication.
 
 
 ### Logout
